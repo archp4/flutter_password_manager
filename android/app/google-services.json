@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "77371563818",
+    "project_id": "napps-2951a",
+    "storage_bucket": "napps-2951a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77371563818:android:925200963260793a55c853",
+        "android_client_info": {
+          "package_name": "com.example.pwd_mng"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "77371563818-0ku619vu08u9qrl7p18g3qr130sf4bik.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzSNbXspKBRUzWY1Tqz2krUi92yfKpSjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "77371563818-0ku619vu08u9qrl7p18g3qr130sf4bik.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
