@@ -224,6 +224,7 @@ class _AddNewPasswordDialogState extends State<AddNewPasswordDialog> {
                 userId: userIdController.text,
                 password: passwordController.text,
                 isFavorite: isFavorite,
+                lastUpdate: "Today",
                 type: tag + 1, // because all was remove in tags
               );
               ScaffoldMessenger.of(context).showSnackBar(

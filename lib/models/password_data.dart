@@ -6,12 +6,16 @@ class PasswordData {
   String userId;
   String password;
   bool isFavorite;
+  String lastUpdate;
+  String? note;
   int type;
   PasswordData({
     required this.title,
     required this.userId,
     required this.password,
     required this.isFavorite,
+    required this.lastUpdate,
+    this.note,
     required this.type,
   });
 
@@ -20,6 +24,8 @@ class PasswordData {
     String? userId,
     String? password,
     bool? isFavorite,
+    String? lastUpdate,
+    String? note,
     int? type,
   }) {
     return PasswordData(
@@ -27,6 +33,8 @@ class PasswordData {
       userId: userId ?? this.userId,
       password: password ?? this.password,
       isFavorite: isFavorite ?? this.isFavorite,
+      lastUpdate: lastUpdate ?? this.lastUpdate,
+      note: note ?? this.note,
       type: type ?? this.type,
     );
   }
@@ -37,6 +45,8 @@ class PasswordData {
       'userId': userId,
       'password': password,
       'isFavorite': isFavorite,
+      'lastUpdate': lastUpdate,
+      'note': note,
       'type': type,
     };
   }
@@ -47,6 +57,8 @@ class PasswordData {
       userId: map['userId'] as String,
       password: map['password'] as String,
       isFavorite: map['isFavorite'] as bool,
+      lastUpdate: map['lastUpdate'] as String,
+      note: map['note'] != null ? map['note'] as String : null,
       type: map['type'] as int,
     );
   }
@@ -58,17 +70,20 @@ class PasswordData {
 
   @override
   String toString() {
-    return 'PasswordData(title: $title, userId: $userId, password: $password, isFavorite: $isFavorite, type: $type)';
+    return 'PasswordData(title: $title, userId: $userId, password: $password, isFavorite: $isFavorite, lastUpdate: $lastUpdate, note: $note, type: $type)';
   }
 
   @override
-  bool operator ==(covariant PasswordData other) {
+  bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other.title == title &&
+    return other is PasswordData &&
+        other.title == title &&
         other.userId == userId &&
         other.password == password &&
         other.isFavorite == isFavorite &&
+        other.lastUpdate == lastUpdate &&
+        other.note == note &&
         other.type == type;
   }
 
@@ -78,6 +93,8 @@ class PasswordData {
         userId.hashCode ^
         password.hashCode ^
         isFavorite.hashCode ^
+        lastUpdate.hashCode ^
+        note.hashCode ^
         type.hashCode;
   }
 }

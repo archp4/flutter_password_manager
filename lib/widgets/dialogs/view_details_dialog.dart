@@ -18,7 +18,7 @@ Dialog getViewDetailsDialog(
         ),
         SizedBox(
           height: 300.0,
-          width: 280,
+          width: 300,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[

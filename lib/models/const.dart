@@ -15,6 +15,7 @@ var passwordList = [
     password: "Archpatel18",
     title: "Roit Games",
     type: 2,
+    lastUpdate: "",
     isFavorite: false,
   ),
   PasswordData(
@@ -22,6 +23,7 @@ var passwordList = [
     password: "Archpatel18",
     title: "Roit Games",
     type: 3,
+    lastUpdate: "",
     isFavorite: false,
   ),
   PasswordData(
@@ -29,6 +31,9 @@ var passwordList = [
     password: "Archpatel18",
     title: "Roit Games",
     type: 1,
+    lastUpdate: "",
     isFavorite: false,
   ),
 ];
+
+const double defaultSpace = 16;
