@@ -61,7 +61,7 @@ class DatabaseHelper {
     final db = await database;
 
     await db.update(
-      'todo',
+      'password',
       {
         'title': password.title,
         'userId': password.userId,

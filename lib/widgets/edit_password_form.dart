@@ -6,22 +6,34 @@ import 'package:pwd_mng/models/password_data.dart';
 import 'package:pwd_mng/widgets/custom_dropdown_new_password.dart';
 import 'package:pwd_mng/widgets/custom_textfield_new_password.dart';
 
-class NewPasswordForm extends StatefulWidget {
-  const NewPasswordForm({
+class EditPasswordForm extends StatefulWidget {
+  final PasswordData password;
+  const EditPasswordForm({
+    required this.password,
     super.key,
   });
 
   @override
-  State<NewPasswordForm> createState() => _NewPasswordFormState();
+  State<EditPasswordForm> createState() => _EditPasswordFormState();
 }
 
-class _NewPasswordFormState extends State<NewPasswordForm> {
+class _EditPasswordFormState extends State<EditPasswordForm> {
   String? selectedValue = passwordTypeList[5];
   final userIdController = TextEditingController();
   final passwordController = TextEditingController();
   final websiteController = TextEditingController();
   final noteController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    userIdController.text = widget.password.userId;
+    passwordController.text = widget.password.password;
+    websiteController.text = widget.password.title;
+    noteController.text = widget.password.note ?? "";
+    selectedValue = passwordTypeList[widget.password.type];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +92,7 @@ class _NewPasswordFormState extends State<NewPasswordForm> {
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   final password = PasswordData(
+                    id: widget.password.id,
                     title: websiteController.text,
                     userId: userIdController.text,
                     password: passwordController.text,
@@ -90,16 +103,17 @@ class _NewPasswordFormState extends State<NewPasswordForm> {
                     type: passwordTypeList
                         .indexWhere((cat) => cat == selectedValue),
                   );
-                  context.read<PasswordHelper>().addPassword(password);
+                  context.read<PasswordHelper>().updatePassword(password);
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text("Data Added Successfully"),
+                      content: Text("Data Added Update"),
                     ),
                   );
                   Navigator.pop(context);
+                  Navigator.pop(context);
                 }
               },
-              child: const Text("Save"),
+              child: const Text("Update"),
             ),
           ],
         ),

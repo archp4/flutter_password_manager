@@ -1,4 +1,4 @@
-import 'package:pwd_mng/models/password_data.dart';
+// import 'package:pwd_mng/models/password_data.dart';
 
 var passwordTypeList = [
   'All', //0
@@ -9,31 +9,31 @@ var passwordTypeList = [
   'Other', //5
 ];
 
-var passwordList = [
-  PasswordData(
-    userId: "NinjaNewValorant",
-    password: "Archpatel18",
-    title: "Roit Games",
-    type: 2,
-    lastUpdate: "",
-    isFavorite: false,
-  ),
-  PasswordData(
-    userId: "NinjaNewValorant",
-    password: "Archpatel18",
-    title: "Roit Games",
-    type: 3,
-    lastUpdate: "",
-    isFavorite: false,
-  ),
-  PasswordData(
-    userId: "NinjaNewValorant",
-    password: "Archpatel18",
-    title: "Roit Games",
-    type: 1,
-    lastUpdate: "",
-    isFavorite: false,
-  ),
-];
+// var passwordList = [
+//   PasswordData(
+//     userId: "NinjaNewValorant",
+//     password: "Archpatel18",
+//     title: "Roit Games",
+//     type: 2,
+//     lastUpdate: "",
+//     isFavorite: false,
+//   ),
+//   PasswordData(
+//     userId: "NinjaNewValorant",
+//     password: "Archpatel18",
+//     title: "Roit Games",
+//     type: 3,
+//     lastUpdate: "",
+//     isFavorite: false,
+//   ),
+//   PasswordData(
+//     userId: "NinjaNewValorant",
+//     password: "Archpatel18",
+//     title: "Roit Games",
+//     type: 1,
+//     lastUpdate: "",
+//     isFavorite: false,
+//   ),
+// ];
 
 const double defaultSpace = 16;

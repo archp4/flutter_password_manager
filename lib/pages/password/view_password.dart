@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:pwd_mng/helpers/password_helper.dart';
 import 'package:pwd_mng/models/const.dart';
 import 'package:pwd_mng/models/password_data.dart';
+import 'package:pwd_mng/pages/password/edit_password.dart';
 
 class ViewPassword extends StatefulWidget {
   final PasswordData passwordData;
@@ -29,10 +30,17 @@ class _ViewPasswordState extends State<ViewPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back_ios_new)),
         backgroundColor: Colors.blueAccent,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              editPasswordSheet(context, widget.passwordData);
+            },
             icon: const Icon(
               Icons.edit,
               color: Colors.white,
@@ -43,6 +51,9 @@ class _ViewPasswordState extends State<ViewPassword> {
               setState(() {
                 widget.passwordData.isFavorite =
                     !widget.passwordData.isFavorite;
+                context
+                    .read<PasswordHelper>()
+                    .updatePassword(widget.passwordData);
               });
             },
             icon: Icon(
@@ -79,7 +90,7 @@ class _ViewPasswordState extends State<ViewPassword> {
             ),
           ),
           Container(
-            height: MediaQuery.of(context).size.height - 260,
+            height: MediaQuery.of(context).size.height - 320,
             decoration: BoxDecoration(
               color: Theme.of(context).scaffoldBackgroundColor,
             ),
