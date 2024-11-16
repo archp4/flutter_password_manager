@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:pwd_mng/helpers/password_helper.dart';
 import 'package:pwd_mng/models/const.dart';
 import 'package:pwd_mng/models/password_data.dart';
 
@@ -77,76 +79,101 @@ class _ViewPasswordState extends State<ViewPassword> {
             ),
           ),
           Container(
+            height: MediaQuery.of(context).size.height - 260,
             decoration: BoxDecoration(
               color: Theme.of(context).scaffoldBackgroundColor,
             ),
             child: Column(
               children: [
-                ListTile(
-                  leading: const Icon(Icons.person),
-                  title: const Text("ID/Username"),
-                  subtitle: Text(widget.passwordData.userId),
-                  trailing: IconButton(
-                    onPressed: () async {
-                      await Clipboard.setData(
-                        ClipboardData(text: widget.passwordData.userId),
-                      );
-                      // ignore: use_build_context_synchronously
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text("ID/Username Copied")));
-                    },
-                    icon: const Icon(Icons.copy),
-                  ),
-                ),
-                ListTile(
-                  leading: const Icon(Icons.password),
-                  title: const Text("Password"),
-                  subtitle: Text(
-                    isObserve ? observePassword : widget.passwordData.password,
-                    style: const TextStyle(),
-                  ),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
+                Expanded(
+                  child: Column(
                     children: [
-                      IconButton(
-                        onPressed: () {
-                          setState(() {
-                            isObserve = !isObserve;
-                          });
-                        },
-                        icon: isObserve
-                            ? const Icon(Icons.visibility)
-                            : const Icon(Icons.visibility_off),
+                      ListTile(
+                        leading: const Icon(Icons.person),
+                        title: const Text("ID/Username"),
+                        subtitle: Text(widget.passwordData.userId),
+                        trailing: IconButton(
+                          onPressed: () async {
+                            await Clipboard.setData(
+                              ClipboardData(text: widget.passwordData.userId),
+                            );
+                            // ignore: use_build_context_synchronously
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text("ID/Username Copied")));
+                          },
+                          icon: const Icon(Icons.copy),
+                        ),
                       ),
-                      IconButton(
-                        onPressed: () async {
-                          await Clipboard.setData(
-                            ClipboardData(text: widget.passwordData.password),
-                          );
-                          // ignore: use_build_context_synchronously
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text("Password Copied")));
-                        },
-                        icon: const Icon(Icons.copy),
+                      ListTile(
+                        leading: const Icon(Icons.password),
+                        title: const Text("Password"),
+                        subtitle: Text(
+                          isObserve
+                              ? observePassword
+                              : widget.passwordData.password,
+                          style: const TextStyle(),
+                        ),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  isObserve = !isObserve;
+                                });
+                              },
+                              icon: isObserve
+                                  ? const Icon(Icons.visibility)
+                                  : const Icon(Icons.visibility_off),
+                            ),
+                            IconButton(
+                              onPressed: () async {
+                                await Clipboard.setData(
+                                  ClipboardData(
+                                      text: widget.passwordData.password),
+                                );
+                                // ignore: use_build_context_synchronously
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text("Password Copied")));
+                              },
+                              icon: const Icon(Icons.copy),
+                            ),
+                          ],
+                        ),
+                      ),
+                      ListTile(
+                        leading: const Icon(Icons.note),
+                        title: const Text("Notes"),
+                        subtitle: Text(
+                          widget.passwordData.note != null
+                              ? widget.passwordData.note!
+                              : "No Note Added",
+                          style: const TextStyle(),
+                        ),
+                      ),
+                      ListTile(
+                        leading: const Icon(Icons.label_important),
+                        title: const Text("Category"),
+                        subtitle:
+                            Text(passwordTypeList[widget.passwordData.type]),
                       ),
                     ],
                   ),
                 ),
-                ListTile(
-                  leading: const Icon(Icons.note),
-                  title: const Text("Notes"),
-                  subtitle: Text(
-                    widget.passwordData.note != null
-                        ? widget.passwordData.note!
-                        : "No Note Added",
-                    style: const TextStyle(),
+                TextButton(
+                  onPressed: () {
+                    context
+                        .read<PasswordHelper>()
+                        .removePassword(widget.passwordData);
+                    Navigator.pop(context);
+                  },
+                  child: const Text(
+                    "Delete",
+                    style: TextStyle(color: Colors.red),
                   ),
-                ),
-                ListTile(
-                  leading: const Icon(Icons.label_important),
-                  title: const Text("Category"),
-                  subtitle: Text(passwordTypeList[widget.passwordData.type]),
-                ),
+                )
               ],
             ),
           )

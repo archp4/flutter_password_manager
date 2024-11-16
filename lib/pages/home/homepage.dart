@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:pwd_mng/helpers/display_list_helper.dart';
+import 'package:pwd_mng/helpers/list_helper.dart';
 import 'package:pwd_mng/helpers/password_helper.dart';
 import 'package:pwd_mng/models/password_data.dart';
 import 'package:pwd_mng/pages/home/add_new_password.dart';
@@ -44,12 +44,6 @@ class _HomepageState extends State<Homepage> {
             color: Colors.white,
           ),
           onPressed: () {
-            // showDialog(
-            //   context: context,
-            //   builder: (_) => const AddNewPasswordDialog(),
-            // ).whenComplete(() {
-            //   setState(() {});
-            // });
             addNewPasswordSheet(context);
           },
         ),

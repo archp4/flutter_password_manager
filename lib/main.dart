@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:pwd_mng/helpers/display_list_helper.dart';
+import 'package:pwd_mng/helpers/list_helper.dart';
 import 'package:pwd_mng/helpers/password_helper.dart';
 import 'package:pwd_mng/main_page.dart';
 import 'package:pwd_mng/models/theme.dart';
