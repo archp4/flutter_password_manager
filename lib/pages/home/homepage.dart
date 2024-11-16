@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pwd_mng/models/const.dart';
+import 'package:provider/provider.dart';
+import 'package:pwd_mng/helpers/display_list_helper.dart';
+import 'package:pwd_mng/helpers/password_helper.dart';
+import 'package:pwd_mng/models/password_data.dart';
 import 'package:pwd_mng/pages/home/add_new_password.dart';
 import 'package:pwd_mng/pages/search/allsearch.dart';
 import 'package:pwd_mng/widgets/dropdown.dart';
@@ -13,20 +16,26 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  List? displayList = [];
   int selectedIndex = 0;
-  var displayList = passwordList;
-  filterList(index) {
-    if (index == 0) {
-      displayList = passwordList;
-      return;
+  filterList(index, List<PasswordData>? passwordList) {
+    if (passwordList != null) {
+      if (index == 0) {
+        displayList = passwordList;
+        return;
+      }
+      displayList = passwordList
+          .where((passwordData) => passwordData.type == index)
+          .toList();
     }
-    displayList = passwordList
-        .where((passwordData) => passwordData.type == index)
-        .toList();
   }
 
   @override
   Widget build(BuildContext context) {
+    selectedIndex = context.watch<ListHelper>().selectedIndex;
+    var passwordList = context.watch<PasswordHelper>().passwords;
+    filterList(selectedIndex, passwordList);
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -46,13 +55,8 @@ class _HomepageState extends State<Homepage> {
         ),
         backgroundColor: Colors.blueAccent,
         title: MiniDropDown(
-          onChanged: (index) {
-            setState(() {
-              selectedIndex = index;
-              filterList(index);
-            });
-          },
-        ),
+            onChanged: (index) =>
+                context.read<ListHelper>().changeIndex(index)),
         actions: [
           IconButton(
             icon: const Icon(
@@ -63,7 +67,7 @@ class _HomepageState extends State<Homepage> {
               showSearch(
                 context: context,
                 delegate: AllSearchDelegate(
-                  suggestions: passwordList,
+                  suggestions: passwordList!,
                   hintText: 'Search Password By Title',
                 ),
               );
@@ -71,12 +75,16 @@ class _HomepageState extends State<Homepage> {
           ),
         ],
       ),
-      body: ListView(
-        children: [
-          for (var password in displayList)
-            PasswordTile(passwordDetail: password)
-        ],
-      ),
+      body: displayList!.isNotEmpty
+          ? ListView(
+              children: [
+                for (var password in displayList!)
+                  PasswordTile(passwordDetail: password)
+              ],
+            )
+          : const Center(
+              child: Text("No Password Found!!"),
+            ),
     );
   }
 }

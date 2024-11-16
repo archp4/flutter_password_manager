@@ -7,16 +7,20 @@ void addNewPasswordSheet(context) {
     isScrollControlled: true,
     context: context,
     builder: (BuildContext context) {
-      return Container(
-        height: 420,
-        padding: const EdgeInsets.all(defaultSpace),
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(16),
-            topRight: Radius.circular(16),
-          ),
+      return Padding(
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
         ),
-        child: const NewPasswordForm(),
+        child: Container(
+          padding: const EdgeInsets.all(defaultSpace),
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(16),
+              topRight: Radius.circular(16),
+            ),
+          ),
+          child: const NewPasswordForm(),
+        ),
       );
     },
   );

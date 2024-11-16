@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:pwd_mng/helpers/display_list_helper.dart';
+import 'package:pwd_mng/helpers/password_helper.dart';
 import 'package:pwd_mng/main_page.dart';
 import 'package:pwd_mng/models/theme.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => PasswordHelper()),
+        ChangeNotifierProvider(create: (_) => ListHelper()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

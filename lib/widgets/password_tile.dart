@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pwd_mng/models/const.dart';
 import 'package:pwd_mng/models/password_data.dart';
-import 'package:pwd_mng/widgets/dialogs/view_details_dialog.dart';
+import 'package:pwd_mng/pages/password/view_password.dart';
 
 class PasswordTile extends StatelessWidget {
   final PasswordData passwordDetail;
@@ -14,11 +14,17 @@ class PasswordTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () async {
-        await showDialog(
-          context: context,
-          builder: (BuildContext context) => getViewDetailsDialog(
-            context: context,
-            passwordDetail: passwordDetail,
+        // await showDialog(
+        //   context: context,
+        //   builder: (BuildContext context) => getViewDetailsDialog(
+        //     context: context,
+        //     passwordDetail: passwordDetail,
+        //   ),
+        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => ViewPassword(passwordData: passwordDetail),
           ),
         );
       },

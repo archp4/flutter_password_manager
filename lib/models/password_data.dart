@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 class PasswordData {
+  int? id;
   String title;
   String userId;
   String password;
@@ -9,7 +10,9 @@ class PasswordData {
   String lastUpdate;
   String? note;
   int type;
+
   PasswordData({
+    this.id,
     required this.title,
     required this.userId,
     required this.password,
@@ -20,6 +23,7 @@ class PasswordData {
   });
 
   PasswordData copyWith({
+    int? id,
     String? title,
     String? userId,
     String? password,
@@ -29,6 +33,7 @@ class PasswordData {
     int? type,
   }) {
     return PasswordData(
+      id: id ?? this.id,
       title: title ?? this.title,
       userId: userId ?? this.userId,
       password: password ?? this.password,
@@ -41,10 +46,11 @@ class PasswordData {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'id': id,
       'title': title,
       'userId': userId,
       'password': password,
-      'isFavorite': isFavorite,
+      'isFavorite': isFavorite ? 1 : 0,
       'lastUpdate': lastUpdate,
       'note': note,
       'type': type,
@@ -53,10 +59,11 @@ class PasswordData {
 
   factory PasswordData.fromMap(Map<String, dynamic> map) {
     return PasswordData(
+      id: map['id'] != null ? map['id'] as int : null,
       title: map['title'] as String,
       userId: map['userId'] as String,
       password: map['password'] as String,
-      isFavorite: map['isFavorite'] as bool,
+      isFavorite: map['isFavorite'] == 0 ? false : true,
       lastUpdate: map['lastUpdate'] as String,
       note: map['note'] != null ? map['note'] as String : null,
       type: map['type'] as int,
@@ -70,7 +77,7 @@ class PasswordData {
 
   @override
   String toString() {
-    return 'PasswordData(title: $title, userId: $userId, password: $password, isFavorite: $isFavorite, lastUpdate: $lastUpdate, note: $note, type: $type)';
+    return 'PasswordData(id: $id, title: $title, userId: $userId, password: $password, isFavorite: $isFavorite, lastUpdate: $lastUpdate, note: $note, type: $type)';
   }
 
   @override
@@ -78,6 +85,7 @@ class PasswordData {
     if (identical(this, other)) return true;
 
     return other is PasswordData &&
+        other.id == id &&
         other.title == title &&
         other.userId == userId &&
         other.password == password &&
@@ -89,7 +97,8 @@ class PasswordData {
 
   @override
   int get hashCode {
-    return title.hashCode ^
+    return id.hashCode ^
+        title.hashCode ^
         userId.hashCode ^
         password.hashCode ^
         isFavorite.hashCode ^
