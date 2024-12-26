@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pwd_mng/pages/favorite/favorite.dart';
 import 'package:pwd_mng/pages/home/homepage.dart';
+import 'package:pwd_mng/pages/settings/settings.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -12,14 +13,10 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int currentPageIndex = 0;
   var widgetController = PageController();
-  var widgetList = <Widget>[
+  var widgetList = [
     const Homepage(),
     const FavoriteHome(),
-    Container(
-      color: Colors.blue,
-      alignment: Alignment.center,
-      child: const Text('Page 3'),
-    ),
+    const Settings(),
   ];
   @override
   Widget build(BuildContext context) {

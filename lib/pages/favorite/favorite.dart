@@ -26,7 +26,10 @@ class _FavoriteHomeState extends State<FavoriteHome> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blueAccent,
-          title: const Text("Favorite"),
+          title: const Text(
+            "Favorite",
+            style: TextStyle(color: Colors.white),
+          ),
           actions: [
             IconButton(
               icon: const Icon(
