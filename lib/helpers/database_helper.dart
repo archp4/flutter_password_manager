@@ -8,7 +8,7 @@ class DatabaseHelper {
 
   Future<Database> get database async {
     final dbPath = await getDatabasesPath();
-    const dbName = 'PasswordHolder.db';
+    const dbName = 'lock_it.db';
     final path = join(dbPath, dbName);
 
     _database = await openDatabase(path, version: 1, onCreate: _createDB);
