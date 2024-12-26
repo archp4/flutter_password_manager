@@ -77,7 +77,7 @@ class _HomepageState extends State<Homepage> {
               ],
             )
           : const Center(
-              child: Text("No Password Found!!"),
+              child: Text("No Password Found!!\n Add New Entry!!"),
             ),
     );
   }
