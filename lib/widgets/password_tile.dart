@@ -48,7 +48,7 @@ class PasswordTile extends StatelessWidget {
                   left: 6,
                 ),
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white70),
+                  border: Border.all(color: Colors.grey),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Text(passwordTypeList[passwordDetail.type]),
