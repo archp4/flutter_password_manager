@@ -16,7 +16,7 @@ class _AuthHomeState extends State<AuthHome> {
   authNow() async {
     var isAuth = await PreferenceHelper.getLocalAuth();
     if (isAuth) {
-      debugPrint("true: ${isAuth}");
+      debugPrint("true: $isAuth");
       bool temp = await LocalAuth.authenticate();
       if (temp) {
         setState(() => authStatus = true);
@@ -24,7 +24,7 @@ class _AuthHomeState extends State<AuthHome> {
         SystemNavigator.pop();
       }
     } else {
-      debugPrint("else: ${isAuth}");
+      debugPrint("else: $isAuth");
       setState(() => authStatus = true);
     }
   }
