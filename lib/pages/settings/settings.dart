@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pwd_mng/helpers/password_helper.dart';
 import 'package:pwd_mng/helpers/settings.dart';
 import 'package:pwd_mng/pages/settings/database_manger.dart';
 import 'package:provider/provider.dart';
@@ -75,7 +76,7 @@ class _SettingsState extends State<Settings> {
               } else {
                 message = "Data Restore Failed";
               }
-
+              context.read<PasswordHelper>().getPasswords();
               ScaffoldMessenger.of(context)
                   .showSnackBar(SnackBar(content: Text(message)));
             },

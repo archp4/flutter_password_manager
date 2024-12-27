@@ -3,7 +3,6 @@ import 'package:pwd_mng/helpers/settings.dart';
 import 'package:pwd_mng/models/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:pwd_mng/pages/splash/auth.dart';
-import 'package:pwd_mng/pages/splash/splash.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
