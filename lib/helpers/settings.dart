@@ -12,12 +12,12 @@ class AppSettings extends ChangeNotifier {
 
   getDarkMode() async {
     isDark = await PreferenceHelper.getDarkMode();
-    debugPrint(isDark.toString());
     notifyListeners();
   }
 
   getAuthMode() async {
     isAuth = await PreferenceHelper.getLocalAuth();
+    debugPrint("Auth Status: $isAuth");
     notifyListeners();
   }
 

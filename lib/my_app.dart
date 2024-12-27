@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:pwd_mng/helpers/settings.dart';
-import 'package:pwd_mng/main_page.dart';
 import 'package:pwd_mng/models/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:pwd_mng/pages/splash/auth.dart';
+import 'package:pwd_mng/pages/splash/splash.dart';
 
-class MyApp extends StatelessWidget {
-  final bool isDark;
-  const MyApp({super.key, required this.isDark});
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,7 +24,7 @@ class MyApp extends StatelessWidget {
             : customLightTheme(),
         useMaterial3: true,
       ),
-      home: const MainPage(),
+      home: const AuthHome(),
     );
   }
 }

@@ -43,7 +43,7 @@ class _HomepageState extends State<Homepage> {
             Icons.add,
             color: Colors.white,
           ),
-          onPressed: () {
+          onPressed: () async {
             addNewPasswordSheet(context);
           },
         ),

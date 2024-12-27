@@ -17,11 +17,11 @@ Future<bool> backupIt() async {
   if ((await copyTo.exists())) {
     var status = await Permission.storage.status;
     if (!status.isGranted) {
-      await Permission.storage.request();
+      await Permission.manageExternalStorage.request();
     }
   } else {
     debugPrint("not exist");
-    if (await Permission.storage.request().isGranted) {
+    if (await Permission.manageExternalStorage.request().isGranted) {
       await copyTo.create();
     } else {
       debugPrint('Please give permission');

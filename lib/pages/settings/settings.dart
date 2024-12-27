@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pwd_mng/helpers/preference_helper.dart';
 import 'package:pwd_mng/helpers/settings.dart';
 import 'package:pwd_mng/pages/settings/database_manger.dart';
 import 'package:provider/provider.dart';
