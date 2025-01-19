@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pwd_mng/helpers/settings.dart';
 import 'package:pwd_mng/models/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:pwd_mng/pages/onboarding/onboarding.dart';
 import 'package:pwd_mng/pages/splash/auth.dart';
 
 class MyApp extends StatefulWidget {
@@ -23,7 +24,8 @@ class _MyAppState extends State<MyApp> {
             : customLightTheme(),
         useMaterial3: true,
       ),
-      home: const AuthHome(),
+      // home: const AuthHome(),
+      home: const OnBoarding(),
     );
   }
 }
