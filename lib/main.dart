@@ -10,7 +10,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   FeaturesTour.setGlobalConfig(
-    force: true,
+    force: false,
     childConfig: ChildConfig(backgroundColor: Colors.indigoAccent),
   );
 

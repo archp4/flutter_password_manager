@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:pwd_mng/helpers/local_auth.dart';
 import 'package:pwd_mng/helpers/preference_helper.dart';
 import 'package:pwd_mng/main_page.dart';
+import 'package:pwd_mng/pages/onboarding/onboarding.dart';
 
 class AuthHome extends StatefulWidget {
   const AuthHome({super.key});
@@ -15,7 +16,18 @@ class _AuthHomeState extends State<AuthHome> {
 
   authNow() async {
     var isAuth = await PreferenceHelper.getLocalAuth();
-    if (isAuth) {
+    var isOnBoarded = await PreferenceHelper.getOnBoarding();
+
+    if (!isOnBoarded) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (_) => const OnBoarding(),
+        ),
+      );
+    }
+
+    if (isAuth && isOnBoarded) {
       debugPrint("true: $isAuth");
       bool temp = await LocalAuth.authenticate();
       if (temp) {

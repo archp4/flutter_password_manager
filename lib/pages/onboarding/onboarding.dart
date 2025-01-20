@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:pwd_mng/helpers/preference_helper.dart';
 import 'package:pwd_mng/helpers/settings.dart';
 import 'package:pwd_mng/pages/splash/auth.dart';
 
@@ -57,11 +58,14 @@ class _OnBoardingState extends State<OnBoarding> {
               width: double.infinity,
               height: 50,
               child: ElevatedButton(
-                onPressed: () => Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (_) => const AuthHome(),
-                  ),
-                ),
+                onPressed: () {
+                  PreferenceHelper.setOnBoarding(true);
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (_) => const AuthHome(),
+                    ),
+                  );
+                },
                 child: const Text("Get Started Now !!"),
               ),
             )
