@@ -1,3 +1,4 @@
+import 'package:features_tour/features_tour.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -17,9 +18,12 @@ class ViewPassword extends StatefulWidget {
 class _ViewPasswordState extends State<ViewPassword> {
   var observePassword = "";
 
+  final tourController = FeaturesTourController('ViewPassword');
+
   bool isObserve = true;
   @override
   void initState() {
+    // tourController.start(context);
     super.initState();
     for (var i = 0; i < widget.passwordData.password.length; i++) {
       observePassword += "*";
@@ -40,28 +44,39 @@ class _ViewPasswordState extends State<ViewPassword> {
             )),
         backgroundColor: Colors.blueAccent,
         actions: [
-          IconButton(
-            onPressed: () {
-              editPasswordSheet(context, widget.passwordData);
-            },
-            icon: const Icon(
-              Icons.edit,
-              color: Colors.white,
+          FeaturesTour(
+            index: 0,
+            controller: tourController,
+            introduce: const Text('Edit Your Password Details'),
+            child: IconButton(
+              onPressed: () {
+                editPasswordSheet(context, widget.passwordData);
+              },
+              icon: const Icon(
+                Icons.edit,
+                color: Colors.white,
+              ),
             ),
           ),
-          IconButton(
-            onPressed: () {
-              setState(() {
-                widget.passwordData.isFavorite =
-                    !widget.passwordData.isFavorite;
-                context
-                    .read<PasswordHelper>()
-                    .updatePassword(widget.passwordData);
-              });
-            },
-            icon: Icon(
-              widget.passwordData.isFavorite ? Icons.star : Icons.star_border,
-              color: Colors.white,
+          FeaturesTour(
+            controller: tourController,
+            index: 1,
+            introduce: const Text(
+                'Make It Your Favorite/Unfavorite By Selecting/Unselecting'),
+            child: IconButton(
+              onPressed: () {
+                setState(() {
+                  widget.passwordData.isFavorite =
+                      !widget.passwordData.isFavorite;
+                  context
+                      .read<PasswordHelper>()
+                      .updatePassword(widget.passwordData);
+                });
+              },
+              icon: Icon(
+                widget.passwordData.isFavorite ? Icons.star : Icons.star_border,
+                color: Colors.white,
+              ),
             ),
           ),
           const SizedBox(width: 3)
@@ -107,17 +122,23 @@ class _ViewPasswordState extends State<ViewPassword> {
                           leading: const Icon(Icons.person),
                           title: const Text("ID/Username"),
                           subtitle: Text(widget.passwordData.userId),
-                          trailing: IconButton(
-                            onPressed: () async {
-                              await Clipboard.setData(
-                                ClipboardData(text: widget.passwordData.userId),
-                              );
-                              // ignore: use_build_context_synchronously
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                      content: Text("ID/Username Copied")));
-                            },
-                            icon: const Icon(Icons.copy),
+                          trailing: FeaturesTour(
+                            index: 3,
+                            controller: tourController,
+                            introduce: const Text("Copy Your ID/Username"),
+                            child: IconButton(
+                              onPressed: () async {
+                                await Clipboard.setData(
+                                  ClipboardData(
+                                      text: widget.passwordData.userId),
+                                );
+                                // ignore: use_build_context_synchronously
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text("ID/Username Copied")));
+                              },
+                              icon: const Icon(Icons.copy),
+                            ),
                           ),
                         ),
                         ListTile(
@@ -132,28 +153,39 @@ class _ViewPasswordState extends State<ViewPassword> {
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    isObserve = !isObserve;
-                                  });
-                                },
-                                icon: isObserve
-                                    ? const Icon(Icons.visibility)
-                                    : const Icon(Icons.visibility_off),
+                              FeaturesTour(
+                                index: 5,
+                                controller: tourController,
+                                introduce:
+                                    const Text("View/Hide Your Password"),
+                                child: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      isObserve = !isObserve;
+                                    });
+                                  },
+                                  icon: isObserve
+                                      ? const Icon(Icons.visibility)
+                                      : const Icon(Icons.visibility_off),
+                                ),
                               ),
-                              IconButton(
-                                onPressed: () async {
-                                  await Clipboard.setData(
-                                    ClipboardData(
-                                        text: widget.passwordData.password),
-                                  );
-                                  // ignore: use_build_context_synchronously
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                          content: Text("Password Copied")));
-                                },
-                                icon: const Icon(Icons.copy),
+                              FeaturesTour(
+                                index: 4,
+                                controller: tourController,
+                                introduce: const Text("Copy Your Password"),
+                                child: IconButton(
+                                  onPressed: () async {
+                                    await Clipboard.setData(
+                                      ClipboardData(
+                                          text: widget.passwordData.password),
+                                    );
+                                    // ignore: use_build_context_synchronously
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(
+                                            content: Text("Password Copied")));
+                                  },
+                                  icon: const Icon(Icons.copy),
+                                ),
                               ),
                             ],
                           ),
@@ -177,16 +209,21 @@ class _ViewPasswordState extends State<ViewPassword> {
                       ],
                     ),
                   ),
-                  TextButton(
-                    onPressed: () {
-                      context
-                          .read<PasswordHelper>()
-                          .removePassword(widget.passwordData);
-                      Navigator.pop(context);
-                    },
-                    child: const Text(
-                      "Delete",
-                      style: TextStyle(color: Colors.red),
+                  FeaturesTour(
+                    controller: tourController,
+                    index: 2,
+                    introduce: const Text("Delete Your Password Details"),
+                    child: TextButton(
+                      onPressed: () {
+                        context
+                            .read<PasswordHelper>()
+                            .removePassword(widget.passwordData);
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        "Delete",
+                        style: TextStyle(color: Colors.red),
+                      ),
                     ),
                   )
                 ],
