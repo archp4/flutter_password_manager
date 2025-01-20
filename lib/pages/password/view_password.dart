@@ -23,7 +23,7 @@ class _ViewPasswordState extends State<ViewPassword> {
   bool isObserve = true;
   @override
   void initState() {
-    // tourController.start(context);
+    tourController.start(context);
     super.initState();
     for (var i = 0; i < widget.passwordData.password.length; i++) {
       observePassword += "*";

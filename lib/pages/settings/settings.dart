@@ -2,9 +2,9 @@
 
 import 'package:features_tour/features_tour.dart';
 import 'package:flutter/material.dart';
-import 'package:pwd_mng/helpers/local_auth.dart';
 import 'package:pwd_mng/helpers/password_helper.dart';
 import 'package:pwd_mng/helpers/settings.dart';
+import 'package:pwd_mng/pages/settings/alert_local_auth.dart';
 import 'package:pwd_mng/pages/settings/database_manger.dart';
 import 'package:provider/provider.dart';
 
@@ -20,6 +20,12 @@ class _SettingsState extends State<Settings> {
   var isAuth = true;
 
   final tourController = FeaturesTourController("Settings");
+
+  @override
+  void initState() {
+    super.initState();
+    tourController.start(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,13 +67,16 @@ class _SettingsState extends State<Settings> {
                 value: isAuth,
                 onChanged: (val) async {
                   if (val == true) {
-                    if (await LocalAuth.canAuthenticale()) {
-                      context.read<AppSettings>().updateAuthMode(val);
-                    } else {
+                    try {
+                      if (await alertMessage(context)) {
+                        context.read<AppSettings>().updateAuthMode(val);
+                      } else {
+                        throw Error();
+                      }
+                    } catch (e) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text(
-                              "Must Setup Lock Screen / Biometers Auth To Access this Feature "),
+                          content: Text("Feature Activison is cancel"),
                         ),
                       );
                     }

@@ -2,6 +2,8 @@
 
 **LockIt** is a secure and user-friendly password manager designed to keep your credentials safe on your local device. With LockIt, you can effortlessly store, organize, and access your passwords, all while enjoying a seamless and intuitive experience.
 
+<!-- ![App Pics](https://previewed.app/template/CFA62417) -->
+
 ## Key Features
 
 - **Local Storage with SQLite**  
