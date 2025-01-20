@@ -7,7 +7,8 @@ void addNewPasswordSheet(context) {
     isScrollControlled: true,
     context: context,
     builder: (BuildContext context) {
-      return Padding(
+      return Container(
+        margin: const EdgeInsets.only(top: 20),
         padding: EdgeInsets.only(
           bottom: MediaQuery.of(context).viewInsets.bottom,
         ),

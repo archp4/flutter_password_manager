@@ -17,6 +17,8 @@ class CDDNewPassword extends StatefulWidget {
 }
 
 class _CDDNewPasswordState extends State<CDDNewPassword> {
+  var typeList = passwordTypeList.skip(1);
+
   @override
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
@@ -29,7 +31,7 @@ class _CDDNewPasswordState extends State<CDDNewPassword> {
             color: Theme.of(context).hintColor,
           ),
         ),
-        items: passwordTypeList
+        items: typeList
             .map((String item) => DropdownMenuItem<String>(
                   value: item,
                   child: Text(

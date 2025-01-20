@@ -44,66 +44,64 @@ class _HomepageState extends State<Homepage> {
     var passwordList = context.watch<PasswordHelper>().passwords;
     filterList(selectedIndex, passwordList);
 
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          leading: FeaturesTour(
+    return Scaffold(
+      appBar: AppBar(
+        leading: FeaturesTour(
+          controller: tourController,
+          introduce: const Text('Use this button To Add new Password'),
+          index: 0,
+          child: IconButton(
+            icon: const Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+            onPressed: () async {
+              addNewPasswordSheet(context);
+            },
+          ),
+        ),
+        backgroundColor: Colors.blueAccent,
+        title: FeaturesTour(
+          controller: tourController,
+          index: 1,
+          introduce: const Text('Sort Password by Type'),
+          child: MiniDropDown(
+              onChanged: (index) =>
+                  context.read<ListHelper>().changeIndex(index)),
+        ),
+        actions: [
+          FeaturesTour(
             controller: tourController,
-            introduce: const Text('Use this button To Add new Password'),
-            index: 0,
+            index: 2,
+            introduce: const Text("Space Where You find Your Password"),
             child: IconButton(
               icon: const Icon(
-                Icons.add,
+                Icons.search,
                 color: Colors.white,
               ),
-              onPressed: () async {
-                addNewPasswordSheet(context);
+              onPressed: () {
+                showSearch(
+                  context: context,
+                  delegate: AllSearchDelegate(
+                    suggestions: passwordList!,
+                    hintText: 'Search Password By Title',
+                  ),
+                );
               },
             ),
           ),
-          backgroundColor: Colors.blueAccent,
-          title: FeaturesTour(
-            controller: tourController,
-            index: 1,
-            introduce: const Text('Sort Password by Type'),
-            child: MiniDropDown(
-                onChanged: (index) =>
-                    context.read<ListHelper>().changeIndex(index)),
-          ),
-          actions: [
-            FeaturesTour(
-              controller: tourController,
-              index: 2,
-              introduce: const Text("Space Where You find Your Password"),
-              child: IconButton(
-                icon: const Icon(
-                  Icons.search,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  showSearch(
-                    context: context,
-                    delegate: AllSearchDelegate(
-                      suggestions: passwordList!,
-                      hintText: 'Search Password By Title',
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-        body: displayList!.isNotEmpty
-            ? ListView(
-                children: [
-                  for (var password in displayList!)
-                    PasswordTile(passwordDetail: password)
-                ],
-              )
-            : const Center(
-                child: Text("No Password Found!!\n Add New Entry!!"),
-              ),
+        ],
       ),
+      body: displayList!.isNotEmpty
+          ? ListView(
+              children: [
+                for (var password in displayList!)
+                  PasswordTile(passwordDetail: password)
+              ],
+            )
+          : const Center(
+              child: Text("No Password Found!!\n Add New Entry!!"),
+            ),
     );
   }
 }

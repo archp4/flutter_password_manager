@@ -12,12 +12,15 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int currentPageIndex = 0;
+
   var widgetController = PageController();
+
   var widgetList = [
     const Homepage(),
     const FavoriteHome(),
     const Settings(),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

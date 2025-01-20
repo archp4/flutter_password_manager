@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:pwd_mng/helpers/settings.dart';
 import 'package:pwd_mng/pages/splash/auth.dart';
 
 class OnBoarding extends StatefulWidget {
@@ -30,11 +32,15 @@ class _OnBoardingState extends State<OnBoarding> {
           children: [
             Container(
               margin: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.1),
+                top: MediaQuery.of(context).size.height * 0.1,
+              ),
               width: double.infinity,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(200),
-                  color: const Color(0xff2f3033)),
+                borderRadius: BorderRadius.circular(200),
+                color: context.watch<AppSettings>().isDark
+                    ? const Color(0xff2f3033)
+                    : Colors.grey,
+              ),
               child: Image.asset(
                 "assets/images/on_boarding.png",
                 fit: BoxFit.cover,
