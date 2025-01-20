@@ -4,12 +4,12 @@ import 'package:local_auth/local_auth.dart';
 class LocalAuth {
   static final _auth = LocalAuthentication();
 
-  static Future<bool> _canAuthenticale() async =>
+  static Future<bool> canAuthenticale() async =>
       await _auth.canCheckBiometrics || await _auth.isDeviceSupported();
 
   static Future<bool> authenticate() async {
     try {
-      if (!await _canAuthenticale()) return false;
+      if (!await canAuthenticale()) return false;
 
       return await _auth.authenticate(
         localizedReason: "Authenticating to access Lock It!!",

@@ -48,6 +48,7 @@ dependencies:
   change_app_package_name: ^1.4.0
   rename_app: ^1.6.1
   features_tour: ^0.4.10
+  flutter_fgbg: ^0.6.0
 
 dev_dependencies:
   flutter_test:

@@ -2,6 +2,7 @@
 
 import 'package:features_tour/features_tour.dart';
 import 'package:flutter/material.dart';
+import 'package:pwd_mng/helpers/local_auth.dart';
 import 'package:pwd_mng/helpers/password_helper.dart';
 import 'package:pwd_mng/helpers/settings.dart';
 import 'package:pwd_mng/pages/settings/database_manger.dart';
@@ -58,8 +59,21 @@ class _SettingsState extends State<Settings> {
               title: const Text("Security"),
               trailing: Switch(
                 value: isAuth,
-                onChanged: (val) {
-                  context.read<AppSettings>().updateAuthMode(val);
+                onChanged: (val) async {
+                  if (val == true) {
+                    if (await LocalAuth.canAuthenticale()) {
+                      context.read<AppSettings>().updateAuthMode(val);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                              "Must Setup Lock Screen / Biometers Auth To Access this Feature "),
+                        ),
+                      );
+                    }
+                  } else {
+                    context.read<AppSettings>().updateAuthMode(val);
+                  }
                 },
               ),
             ),
