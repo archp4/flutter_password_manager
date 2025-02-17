@@ -3,9 +3,11 @@
 var passwordTypeList = [
   'All', //0
   'Work', //1
-  'Soical', //2
+  'Social', //2
   'Gaming', //3
-  'Enterniment', //4
+  'Entertainment',
+  'Finance',
+  'Education', //4
   'Other', //5
 ];
 

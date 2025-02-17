@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:pwd_mng/helpers/list_helper.dart';
 import 'package:pwd_mng/helpers/password_helper.dart';
 import 'package:pwd_mng/models/password_data.dart';
-import 'package:pwd_mng/pages/home/add_new_password.dart';
+import 'package:pwd_mng/pages/password/add_edit_password.dart';
 import 'package:pwd_mng/pages/search/allsearch.dart';
 import 'package:pwd_mng/widgets/dropdown.dart';
 import 'package:pwd_mng/widgets/password_tile.dart';
@@ -56,7 +56,13 @@ class _HomepageState extends State<Homepage> {
               color: Colors.white,
             ),
             onPressed: () async {
-              addNewPasswordSheet(context);
+              // addNewPasswordSheet(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const AddEditPassword(),
+                ),
+              );
             },
           ),
         ),
@@ -83,7 +89,7 @@ class _HomepageState extends State<Homepage> {
                 showSearch(
                   context: context,
                   delegate: AllSearchDelegate(
-                    suggestions: passwordList!,
+                    suggestions: passwordList,
                     hintText: 'Search Password By Title',
                   ),
                 );

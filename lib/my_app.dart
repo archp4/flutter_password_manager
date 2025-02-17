@@ -17,6 +17,9 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'LockIt',
       debugShowCheckedModeBanner: false,
+      // theme: context.watch<AppSettings>().isDark
+      //     ? BlueTheme.dark
+      //     : BlueTheme.light,
       theme: ThemeData(
         colorScheme: context.watch<AppSettings>().isDark
             ? customTheme()

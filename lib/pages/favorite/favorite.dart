@@ -15,7 +15,7 @@ class FavoriteHome extends StatefulWidget {
 class _FavoriteHomeState extends State<FavoriteHome> {
   @override
   Widget build(BuildContext context) {
-    var tempList = context.watch<PasswordHelper>().passwords ?? [];
+    var tempList = context.watch<PasswordHelper>().passwords;
     List<PasswordData> displayList = [];
     for (var password in tempList) {
       if (password.isFavorite) {

@@ -71,3 +71,91 @@ ColorScheme customLightTheme() {
     tertiaryContainer: const Color(0xfff2daff),
   );
 }
+
+class BlueTheme {
+  static ThemeData light = ThemeData(
+    useMaterial3: true, // Use Material 3 if desired
+    colorScheme: const ColorScheme.light(
+      primary: Color(0xFF2196F3), // Blue primary
+      onPrimary: Colors.white, // White text on blue primary
+      secondary: Color(0xFF64B5F6), // Lighter blue secondary
+      onSecondary: Colors.white, // White text on lighter blue secondary
+      background: Color(0xFFE3F2FD), // Very light blue background
+      onBackground: Colors.black87, // Dark text on light background
+      surface: Colors.white, // White surface (cards, dialogs, etc.)
+      onSurface: Colors.black87, // Dark text on white surface
+      error: Color(0xFFB00020), // Standard error color
+      onError: Colors.white, // White text on error color
+    ),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Color(0xFF2196F3), // Blue app bar
+      foregroundColor: Colors.white, // White text on blue app bar
+      elevation: 4, // Add some elevation
+    ),
+    textTheme: const TextTheme(
+      bodyLarge: TextStyle(color: Colors.black87),
+      bodyMedium: TextStyle(color: Colors.black87),
+      bodySmall: TextStyle(color: Colors.black87),
+      headlineLarge:
+          TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
+      headlineMedium:
+          TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
+      headlineSmall:
+          TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
+      titleLarge: TextStyle(color: Colors.black87, fontWeight: FontWeight.w500),
+      titleMedium:
+          TextStyle(color: Colors.black87, fontWeight: FontWeight.w500),
+      titleSmall: TextStyle(color: Colors.black87, fontWeight: FontWeight.w500),
+    ),
+    // Add other theme customizations as needed (e.g., button styles, etc.)
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color(0xFF2196F3), // Blue button background
+        foregroundColor: Colors.white, // White text on blue button
+      ),
+    ),
+  );
+
+  static ThemeData dark = ThemeData(
+    useMaterial3: true,
+    colorScheme: const ColorScheme.dark(
+      primary: Color(0xFF64B5F6), // Lighter blue primary in dark mode
+      onPrimary: Colors.white,
+      secondary: Color(0xFF2196F3), // Blue secondary in dark mode
+      onSecondary: Colors.white,
+      background: Color(0xFF121212), // Dark background
+      onBackground: Colors.white70, // Lighter text on dark background
+      surface: Color(0xFF1E1E1E), // Darker surface
+      onSurface: Colors.white70,
+      error: Color(0xFFCF6679), // Slightly different error color
+      onError: Colors.black,
+    ),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Color(0xFF1E1E1E), // Dark app bar
+      foregroundColor: Colors.white70,
+      elevation: 4,
+    ),
+    textTheme: const TextTheme(
+      bodyLarge: TextStyle(color: Colors.white70),
+      bodyMedium: TextStyle(color: Colors.white70),
+      bodySmall: TextStyle(color: Colors.white70),
+      headlineLarge:
+          TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+      headlineMedium:
+          TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+      headlineSmall:
+          TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+      titleLarge: TextStyle(color: Colors.white70, fontWeight: FontWeight.w500),
+      titleMedium:
+          TextStyle(color: Colors.white70, fontWeight: FontWeight.w500),
+      titleSmall: TextStyle(color: Colors.white70, fontWeight: FontWeight.w500),
+    ),
+    // Customize other theme properties for dark mode
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color(0xFF64B5F6), // Lighter blue button
+        foregroundColor: Colors.white,
+      ),
+    ),
+  );
+}
