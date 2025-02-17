@@ -48,6 +48,3 @@ app.*.map.json
 /android/app/release
 /android/app/key.properties
 /android/app/upload-keystore.jks
-
-# Files used for testing
-/lib/models/safekeeper.dart
