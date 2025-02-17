@@ -6,6 +6,7 @@ import 'package:pwd_mng/helpers/password_helper.dart';
 import 'package:pwd_mng/models/const.dart';
 import 'package:pwd_mng/models/password_data.dart';
 import 'package:pwd_mng/pages/password/add_edit_password.dart';
+import 'package:pwd_mng/widgets/custom_alert_dialog.dart';
 
 class ViewPassword extends StatefulWidget {
   final PasswordData passwordData;
@@ -232,10 +233,16 @@ class _ViewPasswordState extends State<ViewPassword> {
                           foregroundColor: Colors.white,
                         ),
                         onPressed: () {
-                          context
-                              .read<PasswordHelper>()
-                              .removePassword(widget.passwordData);
-                          Navigator.pop(context);
+                          CustomAlertDialog.showOptionsMessage(
+                            context: context,
+                            message: "Are You sure you want this password",
+                            onProcess: () {
+                              context
+                                  .read<PasswordHelper>()
+                                  .removePassword(widget.passwordData);
+                              Navigator.pop(context);
+                            },
+                          );
                         },
                         child: const Text(
                           "Delete",

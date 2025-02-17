@@ -54,7 +54,8 @@ class _OnBoardingState extends State<OnBoarding> {
               style: Theme.of(context).textTheme.titleMedium,
             ),
             const Spacer(),
-            SizedBox(
+            Container(
+              margin: const EdgeInsets.only(bottom: 40),
               width: double.infinity,
               height: 50,
               child: ElevatedButton(

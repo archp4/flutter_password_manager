@@ -14,13 +14,6 @@ class PasswordTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () async {
-        // await showDialog(
-        //   context: context,
-        //   builder: (BuildContext context) => getViewDetailsDialog(
-        //     context: context,
-        //     passwordDetail: passwordDetail,
-        //   ),
-        // );
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -29,8 +22,14 @@ class PasswordTile extends StatelessWidget {
         );
       },
       leading: CircleAvatar(child: Text(passwordDetail.title.substring(0, 1))),
-      title: Text(passwordDetail.title),
-      subtitle: Text(passwordDetail.userId),
+      title: Text(
+        passwordDetail.title,
+        overflow: TextOverflow.ellipsis,
+      ),
+      subtitle: Text(
+        passwordDetail.userId,
+        overflow: TextOverflow.ellipsis,
+      ),
       trailing: Column(
         children: [
           const SizedBox(height: 8),
