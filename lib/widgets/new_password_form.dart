@@ -84,6 +84,10 @@ class _NewPasswordFormState extends State<NewPasswordForm> {
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.95,
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blueAccent,
+                  foregroundColor: Colors.white,
+                ),
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
                     final password = PasswordData(

@@ -24,6 +24,7 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
   final websiteController = TextEditingController();
   final noteController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  bool isObscure = true;
 
   @override
   void initState() {
@@ -50,7 +51,9 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
               validationText: "Please Enter ID / Username",
             ),
             const SizedBox(height: defaultSpace),
-            CTFNewPassword(
+            CTFNewPasswordOnly(
+              isObsecre: isObscure,
+              onChange: () => setState(() => isObscure = !isObscure),
               controller: passwordController,
               label: "Password",
               validationText: "Please Enter Password",
@@ -88,32 +91,40 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
               ],
             ),
             const SizedBox(height: defaultSpace),
-            ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  final password = PasswordData(
-                    id: widget.password.id,
-                    title: websiteController.text,
-                    userId: userIdController.text,
-                    password: passwordController.text,
-                    isFavorite: false,
-                    lastUpdate: DateTime.now().toString(),
-                    note:
-                        noteController.text.isEmpty ? "" : noteController.text,
-                    type: passwordTypeList
-                        .indexWhere((cat) => cat == selectedValue),
-                  );
-                  context.read<PasswordHelper>().updatePassword(password);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text("Data Added Update"),
-                    ),
-                  );
-                  Navigator.pop(context);
-                  Navigator.pop(context);
-                }
-              },
-              child: const Text("Update"),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.95,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blueAccent,
+                  foregroundColor: Colors.white,
+                ),
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    final password = PasswordData(
+                      id: widget.password.id,
+                      title: websiteController.text,
+                      userId: userIdController.text,
+                      password: passwordController.text,
+                      isFavorite: false,
+                      lastUpdate: DateTime.now().toString(),
+                      note: noteController.text.isEmpty
+                          ? ""
+                          : noteController.text,
+                      type: passwordTypeList
+                          .indexWhere((cat) => cat == selectedValue),
+                    );
+                    context.read<PasswordHelper>().updatePassword(password);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("Data Added Update"),
+                      ),
+                    );
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  }
+                },
+                child: const Text("Update"),
+              ),
             ),
           ],
         ),

@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:pwd_mng/helpers/password_helper.dart';
 import 'package:pwd_mng/models/const.dart';
 import 'package:pwd_mng/models/password_data.dart';
-import 'package:pwd_mng/pages/password/edit_password.dart';
+import 'package:pwd_mng/pages/password/add_edit_password.dart';
 
 class ViewPassword extends StatefulWidget {
   final PasswordData passwordData;
@@ -34,6 +34,10 @@ class _ViewPasswordState extends State<ViewPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text(
+          "Manage Password",
+          style: TextStyle(color: Colors.white),
+        ),
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
@@ -50,7 +54,14 @@ class _ViewPasswordState extends State<ViewPassword> {
             introduce: const Text('Edit Your Password Details'),
             child: IconButton(
               onPressed: () {
-                editPasswordSheet(context, widget.passwordData);
+                // editPasswordSheet(context, widget.passwordData);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) =>
+                        AddEditPassword(passwordData: widget.passwordData),
+                  ),
+                );
               },
               icon: const Icon(
                 Icons.edit,
@@ -213,16 +224,22 @@ class _ViewPasswordState extends State<ViewPassword> {
                     controller: tourController,
                     index: 2,
                     introduce: const Text("Delete Your Password Details"),
-                    child: TextButton(
-                      onPressed: () {
-                        context
-                            .read<PasswordHelper>()
-                            .removePassword(widget.passwordData);
-                        Navigator.pop(context);
-                      },
-                      child: const Text(
-                        "Delete",
-                        style: TextStyle(color: Colors.red),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.95,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                          foregroundColor: Colors.white,
+                        ),
+                        onPressed: () {
+                          context
+                              .read<PasswordHelper>()
+                              .removePassword(widget.passwordData);
+                          Navigator.pop(context);
+                        },
+                        child: const Text(
+                          "Delete",
+                        ),
                       ),
                     ),
                   )

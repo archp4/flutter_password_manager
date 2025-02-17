@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
 import 'package:pwd_mng/models/password_data.dart';
+import 'package:pwd_mng/models/safekeeper.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
@@ -33,7 +34,7 @@ class DatabaseHelper {
 
   Future<void> insertPassword(PasswordData password) async {
     final db = await database;
-
+    password.password = SafeKeeper.encrypt(password.password);
     await db.insert(
       'password',
       password.toMap(),
@@ -59,6 +60,7 @@ class DatabaseHelper {
 
   Future<void> updatePassword(PasswordData password) async {
     final db = await database;
+    password.password = SafeKeeper.encrypt(password.password);
 
     await db.update(
       'password',
@@ -92,7 +94,11 @@ class DatabaseHelper {
     debugPrint('Data Readed Form LocalDB');
     return List.generate(
       items.length,
-      (index) => PasswordData.fromMap(items[index]),
+      (index) {
+        var password = PasswordData.fromMap(items[index]);
+        password.password = SafeKeeper.decrypt(password.password);
+        return password;
+      },
     );
   }
 }
