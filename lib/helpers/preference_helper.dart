@@ -27,7 +27,7 @@ class PreferenceHelper {
 
   static Future<bool> getDarkMode() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(darkMode) ?? false;
+    return prefs.getBool(darkMode) ?? true;
   }
 
   static Future<bool> getLocalAuth() async {

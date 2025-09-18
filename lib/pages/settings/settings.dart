@@ -7,6 +7,7 @@ import 'package:pwd_mng/helpers/settings.dart';
 import 'package:pwd_mng/pages/settings/alert_local_auth.dart';
 import 'package:pwd_mng/pages/settings/database_manger.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -129,6 +130,39 @@ class _SettingsState extends State<Settings> {
               },
             ),
           ),
+          ListTile(
+            leading: const Icon(Icons.info),
+            title: const Text("About App"),
+            onTap: () {
+              showAboutDialog(
+                context: context,
+                applicationName: "Password Manager",
+                applicationVersion: "1.0.0",
+                applicationLegalese: "Developed by Arch Patel",
+              );
+            },
+          ),
+          FeaturesTour(
+            controller: tourController,
+            index: 4,
+            introduce: const Text("Send Feedback or Report Bug"),
+            child: ListTile(
+                leading: const Icon(Icons.feedback),
+                title: const Text("Feedback"),
+                onTap: () async {
+                  const url = 'https://forms.gle/N1GFqmyrcwrPtmFW7';
+                  final uri = Uri.parse(url);
+                  await launchUrl(uri);
+                  if (await canLaunchUrl(uri)) {
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("Could not launch feedback form"),
+                      ),
+                    );
+                  }
+                }),
+          )
         ],
       ),
     );

@@ -67,7 +67,14 @@ class _OnBoardingState extends State<OnBoarding> {
                     ),
                   );
                 },
-                child: const Text("Get Started Now !!"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blueAccent,
+                ),
+                child: const Text(
+                  "Get Started Now !!",
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
               ),
             )
           ],
