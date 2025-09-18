@@ -5,37 +5,10 @@ var passwordTypeList = [
   'Work', //1
   'Social', //2
   'Gaming', //3
-  'Entertainment',
-  'Finance',
-  'Education', //4
-  'Other', //5
+  'Entertainment', //4
+  'Finance', //5
+  'Education', //6
+  'Other', //7
 ];
-
-// var passwordList = [
-//   PasswordData(
-//     userId: "NinjaNewValorant",
-//     password: "Archpatel18",
-//     title: "Roit Games",
-//     type: 2,
-//     lastUpdate: "",
-//     isFavorite: false,
-//   ),
-//   PasswordData(
-//     userId: "NinjaNewValorant",
-//     password: "Archpatel18",
-//     title: "Roit Games",
-//     type: 3,
-//     lastUpdate: "",
-//     isFavorite: false,
-//   ),
-//   PasswordData(
-//     userId: "NinjaNewValorant",
-//     password: "Archpatel18",
-//     title: "Roit Games",
-//     type: 1,
-//     lastUpdate: "",
-//     isFavorite: false,
-//   ),
-// ];
 
 const double defaultSpace = 16;
